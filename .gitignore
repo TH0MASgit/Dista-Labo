@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+*.sqlite
+*.orig
+/calibrate_settings.json
+/calibration/*.jpg
+
+*.jpg
+/disparity_settings.json

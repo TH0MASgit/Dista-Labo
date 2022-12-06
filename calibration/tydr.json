@@ -1,0 +1,23 @@
+{
+    "cameraIndexes": [
+        "/dev/video1",
+        "/dev/video0"
+    ],
+    "serial": "tydr",
+    "fishEye": false,
+    "squareSize": 36.2,
+    "resolution": "HD",
+    "isCsiCam": true,
+    "boardShape": [
+        6,
+        9
+    ],
+    "leftCamera": {
+        "vFlip": false,
+        "hFlip": false
+    },
+    "rightCamera": {
+        "vFlip": false,
+        "hFlip": false
+    }
+}

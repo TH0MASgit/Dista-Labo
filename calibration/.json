@@ -1,0 +1,17 @@
+{
+    "cameraIndexes": [],
+    "serial": "",
+    "fishEye": false,
+    "squareSize": 36.2,
+    "resolution": "VGA",
+    "isCsiCam": false,
+    "boardShape": "",
+    "leftCamera": {
+        "vFlip": false,
+        "hFlip": false
+    },
+    "rightCamera": {
+        "vFlip": false,
+        "hFlip": false
+    }
+}
