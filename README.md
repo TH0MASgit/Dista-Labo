@@ -20,7 +20,7 @@
 			<li>Damier de calibration 9x6 avec taille de case de 36,2 mm</li>
 			<li>Objets divers (voiture, figurines, humains, ustensiles, clavier, souris, livre, etc.)</li>
 		</ul>
-		<img src="https://github.com/College-Andre-Laurendeau/Dista/blob/main/readme_res/image002.png?raw=true" alt="image des différents objet à avoir pour le laboratoire" />
+		<img src="https://github.com/College-Andre-Laurendeau/Dista/blob/main/readme_res/image001.png?raw=true" alt="image des différents objet à avoir pour le laboratoire" />
 		<h3>Figure 1 — Matériel du laboratoire</h3>
 		<p>Voici un lien vers le site waveshare pour la nano, les caméras ainsi que le boitier : </p>
 		<ul>
