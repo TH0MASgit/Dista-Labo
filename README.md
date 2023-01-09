@@ -105,7 +105,7 @@
 		<p>3.1 Test de détection d’objets (sans calcul de distances)</p>
 		<img src="https://github.com/College-Andre-Laurendeau/Dista/blob/main/readme_res/image038.png?raw=true" alt="Exemple de détection d'objet" />
 		<p><div style="font-size:large"><B>Figure 10 — Exemples de détections d’objects</B></div></p>
-		<p>Le réseau de neurones artificiel utilisé pour la détection d’objets est un modèle « léger » spécialement conçu pour des machines peu puissantes comme votre Jetson Nano. Plusieurs paramètres interviennent dans la qualité des détections obtenues : qualité de l’image, luminosité, environnement visuel, seuil de détection, etc.</p>
+		<p>Le réseau de neurones artificiels utilisé pour la détection d’objets est un modèle « léger » spécialement conçu pour des machines peu puissantes comme votre Jetson Nano. Plusieurs paramètres interviennent dans la qualité des détections obtenues : qualité de l’image, luminosité, environnement visuel, seuil de détection, etc.</p>
 		<p>3.1.1 Depuis votre terminal, aller dans le documents "Dista-main" qui se trouvera à l'endroit où vous l'avez télécharger ou déplacé.</p>
 		<p>3.1.2 Entrer ensuite cette ligne de code "python3 detection.py --opencv --usb --resolution=NANO --catego=car,cellphone,mouse --view_2dbox --sn=<span style="color:red">votreNuméro</span> --linuxid=0,1 --yolo4  --displaydistance --vflip=1,1 --hflip=1,1 --rectifydown=2 --justdetec"</p>
 		<p>N.B. Vous devez changer la partie "votreNuméro" pour le nom que vous avez donné à votre calibration sans ré-écrire le SN.</p>
