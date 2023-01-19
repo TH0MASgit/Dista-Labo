@@ -30,7 +30,7 @@
 		<img src="https://github.com/College-Andre-Laurendeau/Dista/blob/main/readme_res/Nano_Diagram.png?raw=true" alt="Shéma de la Jetson Nano" />
 		<p><div style="font-size:large"><B>Figure 2 — Shéma de la Jetson Nano</B></div></p>
 		<img src="https://github.com/College-Andre-Laurendeau/Dista/blob/main/readme_res/Nano_Description.PNG?raw=true" alt="Description du shéma de la jetson Nano" />
-		<p><div style="font-size:large"><B><Figure 3 — Description du shéma</B></div></p>
+		<p><div style="font-size:large"><B>Figure 3 — Description du shéma</B></div></p>
 		<h2>2.    Calibration de la caméra stéréoscopique</h2>
 		<p>2.1 Lancez l’application de calibration.</p>
 		<p>2.2 Lorsque le panneau de configuration de l’application de calibration s’affiche (voir figure 3), sélectionnez les paramètres de configuration suivants :</p>
