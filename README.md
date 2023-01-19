@@ -27,7 +27,7 @@
 			<li><a href="https://www.waveshare.com/product/ai/accessories/cases/jetson-nano-case-c.htm">Metal Case</a></li>
 			<li><a href="https://www.waveshare.com/product/ai/boards-kits/jetson-nano/jetson-nano-dev-kit-a.htm?sku=21881">Jetson Nano avec Caméras</a></li>
 		</ul>
-		<img src="C:\Users\deryc\OneDrive - Cégep André-Laurendeau\Dista\Protocole H22 (2h) copie pour html_fichiers\image005.png" alt="Shéma de la Jetson Nano" />
+		<img src="https://raw.githubusercontent.com/College-Andre-Laurendeau/Dista/main/readme_res/Nano_Diagram.webp" alt="Shéma de la Jetson Nano" />
 		<p><div style="font-size:large"><B>Figure 2 — Shéma de la Jetson Nano</B></div></p>
 		<h2>2.    Calibration de la caméra stéréoscopique</h2>
 		<p>2.1 Lancez l’application de calibration.</p>
