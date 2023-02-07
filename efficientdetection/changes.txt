@@ -1,0 +1,143 @@
+Changes for efficientdet
+
+
+If training from official pretrained weights
+Simply load from dataset only images with "person" and filter out annotations  : see below for changes
+
+(not necessary if you filter json file : to contain only person anotation. The you don't have to change anything in dataset.py)
+
+-------------------------------------------
+project
+num gpu =1
+
+-----------------------------------------
+-------------------------------------------------------
+efficientdet/dataset.py
+
+        catIds = self.coco.getCatIds(catNms=['person'])
+        imgIds = self.coco.getImgIds(catIds=catIds)
+       
+        self.image_ids = self.coco.getImgIds(imgIds)
+#        self.image_ids = self.coco.getImgIds()
+
+        self.load_classes()
+
+    def load_classes(self):
+
+        # load class names (name -> label)
+        categories = self.coco.loadCats(self.coco.getCatIds(catNms=['person']))
+------------------------------------------------------------------------------
+
+--------------------------------------------------
+in efficientdet/dataset.py
+if annotation[0,4]!=0:  #this is added : keep only person annotation label=0
+      continue
+---------------------------------------------------------------------------------
+
+
+
+
+
+# to do like the offical paper : train.py
+
+#    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=3, verbose=True)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=1, T_mult=1, eta_min=0, last_epoch=-1, verbose=False)
+
+
+     optimizer = torch.optim.SGD(model.parameters(), opt.lr, momentum=0.9,weight_decay=4e-5, nesterov=True)
+
+#           scheduler.step(np.mean(epoch_loss))
+            scheduler.step(epoch + iter / iters) #added see torch documentation exemple on cosineannealing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+If training from scratch
+Change classifier layer from to 80 to 1 and change category name list
+
+
+
+
+---------------------
+Pas besion, done in project below
+utils
+self.num_gpus = 1
+-----------------------
+
+---------------------------
+efficientdetection/backbonne, __init__.py (in efficientdet and in efficientdetection)
+
+num classes =1
+-------------------------------
+
+---------------------------------
+effficientdet/config 
+COCO_CLASSES = ["person"]
+
+colors = [(39, 129, 113)]
+---------------------------
+
+
+
+-------------------------------------------------------
+efficientdet/dataset
+
+        catIds = self.coco.getCatIds(catNms=['person'])
+        imgIds = self.coco.getImgIds(catIds=catIds)
+       
+        self.image_ids = self.coco.getImgIds(imgIds)
+#        self.image_ids = self.coco.getImgIds()
+
+        self.load_classes()
+
+    def load_classes(self):
+
+        # load class names (name -> label)
+        categories = self.coco.loadCats(self.coco.getCatIds(catNms=['person']))
+------------------------------------------------------------------------------
+
+-------------------------------------------
+project
+
+num gpu =1
+obj_list: ['person']
+-----------------------------------------
+
+
+--------------------------------------------------
+in efficientdet/dataset
+if annotation[0,4]!=0:  #this is added : keep only person annotation label=0
+      continue
+
+
+
+FOR VALIDATION on augmented set
+
+add
+import numpy as np
+
+
+add
+
+VAL_GT = '/home/dista/Documents/dista/efficientdetection/datasets/coco/annotations/instances_val2017_person_augmented_widerpers_humancrowd.json' 
+
+
+add two places
+
+image_ids=list(np.asarray(image_ids)[np.random.permutation(len(image_ids))]) #added
+
+
+
+
+
+
