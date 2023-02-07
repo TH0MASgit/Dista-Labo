@@ -1,5 +1,0 @@
-The database samples were getting pretty big (> 250MB) and since they are binary
-files, this wasn't a good fit for the git repo going forward. I have therefore
-moved them to our Teams files (under Mandat Cégep > Bases de données finales).
-
-There is also a copy in "DistaCommun/Bases de données mises à jour".

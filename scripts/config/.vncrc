@@ -1,3 +1,0 @@
-$localhost = "yes"; # prevent connections from outside (without an ssh tunnel)
-$geometry = "1600x900"; # you can dynamically resize with 'xrandr -s 1920x1080'
-
