@@ -109,7 +109,12 @@ class CalibrationStereoProcessor(CalibrationAbstractProcessor):
             return not calibrationLeftImage.getIsEnabled()
         return False
 
-    def savePicture(self, imageLeft, imageRight):
+
+    def savePicture(self, imageLeft, imageRight): #Here***
+        #self.serial = CalibratorApplication.serialName()
+        #print(f"this is {self.serial}")
+        #listDirImageLeft = sorted(glob.glob(f"/home/dista/Documents/dista/calibration/{self.serial}/stereo/*left.jpg"))
+        #listDirImageRight = sorted(glob.glob(f"/home/dista/Documents/dista/calibration/{self.serial}/stereo/*right.jpg"))
         currentImageIndex = self.imageIndex + 1
         numbering = self.generateNumbering(currentImageIndex)
         pathLeft = f'{self.imagePath}/{numbering}_left.jpg'
@@ -130,15 +135,22 @@ class CalibrationStereoProcessor(CalibrationAbstractProcessor):
             json.dump({'results': results}, outfile, indent=4)
 
     def getImage(self, imageIndex, side=None):
-        calibrationLeftImage, calibrationRightImage = self.getChessboardImage(imageIndex)
-        if calibrationLeftImage is not None and calibrationRightImage is not None:
-            if side == 'left':
-                return calibrationLeftImage.getImage()
-            elif side == 'right':
-                return calibrationRightImage.getImage()
-            else:
-                return np.concatenate((calibrationLeftImage.getImage(), calibrationRightImage.getImage()), axis=1)
-        return None
+        try: #Here***
+            calibrationLeftImage, calibrationRightImage = self.getChessboardImage(imageIndex)
+            if calibrationLeftImage is not None and calibrationRightImage is not None:
+                if side == 'left':
+                    return calibrationLeftImage.getImage()
+                    print("get left image")
+                elif side == 'right':
+                    return calibrationRightImage.getImage()
+                    print("get right image")
+                else:
+                    return np.concatenate((calibrationLeftImage.getImage(), calibrationRightImage.getImage()), axis=1)
+                    print("get stereo image")
+            return None
+        except TypeError : #Here***
+            return None #Here***
+            print("get error stereo image")
 
     def isStereo(self):
         return True

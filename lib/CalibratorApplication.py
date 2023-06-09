@@ -456,16 +456,19 @@ class CalibratorApplication():
         self.cameraLeftSetting = settings.get('leftCamera') or {}
         self.cameraRightSetting = settings.get('rightCamera') or {}
 
+
     def saveConfiguration(self):
         # Save the calibration for the next run
         #  Update the boardShape
 
         self.currentConfiguration["boardShape"] = CalibratorApplication.BOARD_SHAPE
-        jsonConfigurationFile = '/home/dista/Documents/dista/calibration/SN1000.json'
-	#jsonConfigurationFile = os.path.join(self.location,f'/calibration/{self.serial}.json')
+        jsonConfigurationFile = os.path.join(self.location,f'calibration/{self.serial}.json')
+        print("self.location",self.location)
+        print("saveConfiguration",jsonConfigurationFile)
 
         with open(jsonConfigurationFile, 'w') as outfile:
             json.dump(self.currentConfiguration, outfile, indent=4)
+
 
     def startCalibration(self, clearPreviousPicture=False):
         boardShape = self.currentConfiguration.get("boardShape") or None
@@ -958,14 +961,34 @@ class CalibratorApplication():
     def handleOnDeleteFile(self):
 
         if self.activeProcessor:
-            chessboardImage = self.activeProcessor.getChessboardImage(self.currentImageIndex)
-
+            chessboardImage = self.activeProcessor.getChessboardImage(self.currentImageIndex)           
+            #print(f"index = {self.currentImageIndex}") #Here***
+            print(f"Serial = {self.serial}") #Here***
             if chessboardImage:
-                filename = chessboardImage.getFileName()
-                try:
-                    os.remove(filename)
-                except OSError as e:
-                    print("Error: %s : %s" % (filename, e.strerror))
+                try: #Here***
+                    filename = chessboardImage.getFileName() 
+                    print(f"chessboardImage = {chessboardImage}") #Here***  
+                    print(f"filename = {filename}") #Here***           
+                    try:
+                        os.remove(filename)
+                    except OSError as e:
+                        print("Error: %s : %s" % (filename, e.strerror))
+                except AttributeError: #Here***
+                    listDirImageLeft = sorted(glob.glob(f"/home/dista/Documents/dista/calibration/{self.serial}/stereo/*left.jpg"))
+                    listDirImageRight = sorted(glob.glob(f"/home/dista/Documents/dista/calibration/{self.serial}/stereo/*right.jpg"))
+                    lastIndexLeft = listDirImageLeft[len(listDirImageLeft) - 1]
+                    lastIndexRight = listDirImageRight[len(listDirImageRight) - 1]
+                    #print(f"The left image is {listDirImageLeft[self.currentImageIndex]} and the right image is {listDirImageRight[self.currentImageIndex]}")
+                    print(f"Dir imageL = {listDirImageLeft}")
+                    print(f"Dir imageR = {listDirImageRight}")
+                    print(f"Last left image = {lastIndexLeft}")
+                    print(f"Last right image = {lastIndexRight}")
+                    #if os.path.exists(f"/home/dista/Documents/dista/calibration/{self.serial}/stereo/00{self.currentImageIndex + 1}_left.jpg"): #Here***
+                    print("Left image deleted") #Here***
+                    os.remove(f"{listDirImageLeft[self.currentImageIndex]}") #Here***
+                    #if os.path.exists(f"/home/dista/Documents/dista/calibration/{self.serial}/stereo/00{self.currentImageIndex + 1}_right.jpg"): #Here***
+                    print("Right image deleted") #Here*** 
+                    os.remove(f"{listDirImageRight[self.currentImageIndex]}") #Here*** 
             self.activeProcessor.resetImageIndex()
             self.refreshFileList()
 
@@ -1134,6 +1157,8 @@ class CalibratorApplication():
 
     def initCamera(self, source, camera, cameraSetting):
         if source is not None:
+            print("source",source)
+                
             if camera is None or camera.source != source:
                 if camera is not None:
                     camera.release()
@@ -1141,14 +1166,17 @@ class CalibratorApplication():
                 isStereoCam = True
                 if len(self.cameraIndexes) > 1:
                     isStereoCam = False
+                print("isStereoCam",isStereoCam)
+            
                 camera = NetCam(source=source, capture=self.resolution, isStereoCam=isStereoCam, isCsiCam=self.isCsiCam)
                 print("camera initialized", source)
                 # camera.showDebug()
-
-            if cameraSetting.get('vFlip'):
-                camera.invertVertical()
-            if cameraSetting.get('hFlip'):
-                camera.invertHorizontal()
+                if cameraSetting.get('vFlip'):
+                    print("invertVertical",cameraSetting.get('vFlip'))
+                    camera.invertVertical()
+                if cameraSetting.get('hFlip'):
+                    print("invertHorizontal",cameraSetting.get('hFlip'))
+                    camera.invertHorizontal()
         return camera
 
     def initDisparityProcessor(self):
