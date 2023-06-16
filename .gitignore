@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*.sqlite
+*.orig
+/calibrate_settings.json
+/calibration/*.jpg
+/calibration/*.json
+/zedinfo/*.json
+
+*.jpg
+/disparity_settings.json
+
+yolov5/*pt
