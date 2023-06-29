@@ -962,18 +962,18 @@ class CalibratorApplication():
 
         if self.activeProcessor:
             chessboardImage = self.activeProcessor.getChessboardImage(self.currentImageIndex)           
-            #print(f"index = {self.currentImageIndex}") #Here***
-            print(f"Serial = {self.serial}") #Here***
+            #print(f"index = {self.currentImageIndex}") 
+            print(f"Serial = {self.serial}") 
             if chessboardImage:
-                try: #Here***
+                try: 
                     filename = chessboardImage.getFileName() 
-                    print(f"chessboardImage = {chessboardImage}") #Here***  
-                    print(f"filename = {filename}") #Here***           
+                    print(f"chessboardImage = {chessboardImage}") 
+                    print(f"filename = {filename}")           
                     try:
                         os.remove(filename)
                     except OSError as e:
                         print("Error: %s : %s" % (filename, e.strerror))
-                except AttributeError: #Here***
+                except AttributeError: 
                     listDirImageLeft = sorted(glob.glob(f"/home/dista/Documents/dista/calibration/{self.serial}/stereo/*left.jpg"))
                     listDirImageRight = sorted(glob.glob(f"/home/dista/Documents/dista/calibration/{self.serial}/stereo/*right.jpg"))
                     lastIndexLeft = listDirImageLeft[len(listDirImageLeft) - 1]
@@ -983,12 +983,12 @@ class CalibratorApplication():
                     print(f"Dir imageR = {listDirImageRight}")
                     print(f"Last left image = {lastIndexLeft}")
                     print(f"Last right image = {lastIndexRight}")
-                    #if os.path.exists(f"/home/dista/Documents/dista/calibration/{self.serial}/stereo/00{self.currentImageIndex + 1}_left.jpg"): #Here***
-                    print("Left image deleted") #Here***
-                    os.remove(f"{listDirImageLeft[self.currentImageIndex]}") #Here***
-                    #if os.path.exists(f"/home/dista/Documents/dista/calibration/{self.serial}/stereo/00{self.currentImageIndex + 1}_right.jpg"): #Here***
-                    print("Right image deleted") #Here*** 
-                    os.remove(f"{listDirImageRight[self.currentImageIndex]}") #Here*** 
+                    #if os.path.exists(f"/home/dista/Documents/dista/calibration/{self.serial}/stereo/00{self.currentImageIndex + 1}_left.jpg"): 
+                    print("Left image deleted") 
+                    os.remove(f"{listDirImageLeft[self.currentImageIndex]}") 
+                    #if os.path.exists(f"/home/dista/Documents/dista/calibration/{self.serial}/stereo/00{self.currentImageIndex + 1}_right.jpg"):
+                    print("Right image deleted") 
+                    os.remove(f"{listDirImageRight[self.currentImageIndex]}") 
             self.activeProcessor.resetImageIndex()
             self.refreshFileList()
 

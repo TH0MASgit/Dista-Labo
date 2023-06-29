@@ -110,11 +110,7 @@ class CalibrationStereoProcessor(CalibrationAbstractProcessor):
         return False
 
 
-    def savePicture(self, imageLeft, imageRight): #Here***
-        #self.serial = CalibratorApplication.serialName()
-        #print(f"this is {self.serial}")
-        #listDirImageLeft = sorted(glob.glob(f"/home/dista/Documents/dista/calibration/{self.serial}/stereo/*left.jpg"))
-        #listDirImageRight = sorted(glob.glob(f"/home/dista/Documents/dista/calibration/{self.serial}/stereo/*right.jpg"))
+    def savePicture(self, imageLeft, imageRight):
         currentImageIndex = self.imageIndex + 1
         numbering = self.generateNumbering(currentImageIndex)
         pathLeft = f'{self.imagePath}/{numbering}_left.jpg'
@@ -135,7 +131,7 @@ class CalibrationStereoProcessor(CalibrationAbstractProcessor):
             json.dump({'results': results}, outfile, indent=4)
 
     def getImage(self, imageIndex, side=None):
-        try: #Here***
+        try: 
             calibrationLeftImage, calibrationRightImage = self.getChessboardImage(imageIndex)
             if calibrationLeftImage is not None and calibrationRightImage is not None:
                 if side == 'left':
@@ -148,8 +144,8 @@ class CalibrationStereoProcessor(CalibrationAbstractProcessor):
                     return np.concatenate((calibrationLeftImage.getImage(), calibrationRightImage.getImage()), axis=1)
                     print("get stereo image")
             return None
-        except TypeError : #Here***
-            return None #Here***
+        except TypeError : 
+            return None 
             print("get error stereo image")
 
     def isStereo(self):
